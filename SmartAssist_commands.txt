@@ -10,3 +10,4 @@ curl http://localhost:11434/api/tags
 docker exec smartassist-ollama ollama pull nomic-embed-text
 docker exec smartassist-ollama ollama pull llama3.2
 curl http://localhost:11434/api/generate -d "{\"model\":\"llama3.2\",\"prompt\":\"What is RAG in AI?\",\"stream\":false}"
+https://github.com/soumyadodamani15/SmartAssist

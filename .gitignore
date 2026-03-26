@@ -15,3 +15,6 @@ docker-compose.override.yml
 
 # Secrets
 appsettings.Development.json
+
+#internal use
+SmartAssist_commands.txt

@@ -97,7 +97,7 @@ SmartAssist: "Enterprise customers are eligible for a full refund within 30 days
 
 ```bash
 # Clone
-git clone https://github.com/YOUR_USERNAME/SmartAssist.git
+git clone https://github.com/soumyadodamani15/SmartAssist.git
 cd SmartAssist
 
 # Start all infrastructure
