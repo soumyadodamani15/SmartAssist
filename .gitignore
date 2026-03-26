@@ -1,0 +1,17 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.DotSettings.user
+
+# Environment
+.env
+*.env.local
+
+# Docker overrides
+docker-compose.override.yml
+
+# Secrets
+appsettings.Development.json

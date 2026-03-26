@@ -1,0 +1,12 @@
+git version 2.53.0.windows.1
+dotnet --version  9.0.203
+
+Docker version 29.3.0, build 5927d80
+
+docker compose up -d
+docker compose ps
+docker exec smartassist-postgres psql -U smartassist -d smartassist -c "\dt"
+curl http://localhost:11434/api/tags
+docker exec smartassist-ollama ollama pull nomic-embed-text
+docker exec smartassist-ollama ollama pull llama3.2
+curl http://localhost:11434/api/generate -d "{\"model\":\"llama3.2\",\"prompt\":\"What is RAG in AI?\",\"stream\":false}"
