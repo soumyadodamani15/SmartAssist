@@ -21,6 +21,8 @@ builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 builder.Services.AddScoped<IDocumentChunkRepository, DocumentChunkRepository>();
 builder.Services.AddScoped<IIngestionJobRepository, IngestionJobRepository>();
 builder.Services.AddScoped<IEmbeddingService, EmbeddingService>();
+builder.Services.AddScoped<DocumentIngestionService>();
+builder.Services.AddSingleton<DocumentChunker>();
 
 var app = builder.Build();
 
