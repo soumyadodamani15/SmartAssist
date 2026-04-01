@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartAssist.Core.DTOs;
+using SmartAssist.Core.Models;
 using SmartAssist.Infrastructure.Services;
 
 namespace SmartAssist.Api.Controllers;
@@ -8,11 +9,11 @@ namespace SmartAssist.Api.Controllers;
 [Route("api/[controller]")]
 public class DocumentsController : ControllerBase
 {
-    private readonly DocumentIngestionService _ingestionService;
+    private readonly IngestionMessageProducer _producer;
 
-    public DocumentsController(DocumentIngestionService ingestionService)
+    public DocumentsController(IngestionMessageProducer producer)
     {
-        _ingestionService = ingestionService;
+        _producer = producer;
     }
 
     [HttpPost]
@@ -22,18 +23,20 @@ public class DocumentsController : ControllerBase
             string.IsNullOrWhiteSpace(request.Source))
             return BadRequest("Title and Source are required.");
 
-        var job = await _ingestionService.IngestAsync(
-            request.Title,
-            request.Source,
-            request.ContentType);
-
-        return Ok(new
+        var message = new IngestionMessage
         {
-            jobId = job.Id,
-            status = job.Status,
-            message = job.Status == "completed"
-                ? "Document ingested successfully"
-                : $"Ingestion failed: {job.ErrorMessage}"
+            DocumentId = Guid.NewGuid(),
+            Title = request.Title,
+            Content = request.Source,
+            ContentType = request.ContentType
+        };
+
+        await _producer.PublishAsync(message);
+
+        return Accepted(new
+        {
+            message = "Document queued for ingestion",
+            documentTitle = request.Title
         });
     }
 }

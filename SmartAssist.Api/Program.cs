@@ -10,7 +10,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+    ?? throw new InvalidOperationException("Connection string not found.");
+
+var rabbitHost = builder.Configuration["RabbitMQ:Host"] ?? "localhost";
+var rabbitUser = builder.Configuration["RabbitMQ:Username"] ?? "smartassist";
+var rabbitPass = builder.Configuration["RabbitMQ:Password"] ?? "smartassist_secret";
 
 builder.Services.AddSingleton<IDbConnectionFactory>(
     new DbConnectionFactory(connectionString));
@@ -23,6 +27,16 @@ builder.Services.AddScoped<IIngestionJobRepository, IngestionJobRepository>();
 builder.Services.AddScoped<IEmbeddingService, EmbeddingService>();
 builder.Services.AddScoped<DocumentIngestionService>();
 builder.Services.AddSingleton<DocumentChunker>();
+
+builder.Services.AddSingleton(new IngestionMessageProducer(
+    rabbitHost, rabbitUser, rabbitPass));
+
+builder.Services.AddHostedService(sp => new IngestionWorker(
+    sp,
+    sp.GetRequiredService<ILogger<IngestionWorker>>(),
+    rabbitHost,
+    rabbitUser,
+    rabbitPass));
 
 var app = builder.Build();
 
