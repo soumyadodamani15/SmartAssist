@@ -2,8 +2,8 @@
 
 > Ask your company's documents a question. Get a precise, grounded answer. No hallucinations, no cloud APIs, no data leaving your infrastructure.
 
-![Build Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square)
-![Phase](https://img.shields.io/badge/phase-2%20of%206-blue?style=flat-square)
+![Phase](https://img.shields.io/badge/phase-6%20of%206-blue?style=flat-square)
+![Build Status](https://img.shields.io/badge/status-complete-green?style=flat-square)
 ![Stack](https://img.shields.io/badge/.NET-8.0-purple?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
@@ -73,21 +73,24 @@ SmartAssist: "Enterprise customers are eligible for a full refund within 30 days
 | Phase | What | Status |
 |---|---|---|
 | Phase 1 | Docker infrastructure (Postgres, RabbitMQ, Ollama) | ✅ Complete |
-| Phase 2 | .NET project + data access layer | 🔄 In progress |
-| Phase 3 | Document ingestion pipeline + chunking | ⏳ Planned |
-| Phase 4 | RabbitMQ async worker | ⏳ Planned |
-| Phase 5 | RAG query pipeline | ⏳ Planned |
-| Phase 6 | REST API + integration | ⏳ Planned |
+| Phase 2 | .NET 9 Clean Architecture + data access layer | ✅ Complete |
+| Phase 3 | Document ingestion pipeline + chunking + embeddings | ✅ Complete |
+| Phase 4 | RabbitMQ async worker | ✅ Complete |
+| Phase 5 | RAG query pipeline + vector search + LLM generation | ✅ Complete |
+| Phase 6 | Polish + demo + documentation | ✅ Complete |
 
 ---
 
 ## Key Concepts Implemented
 
-- **RAG Pipeline** — retrieve before generating; answers grounded in real data
-- **Vector similarity search** — cosine distance via pgvector IVFFlat index
+- **RAG Pipeline** — retrieve before generating, answers grounded in real data
+- **Vector similarity search** — cosine distance via pgvector HNSW index
 - **Document chunking** — overlapping sliding window for context preservation
 - **Async processing** — RabbitMQ decouples upload from CPU-intensive embedding
-- **Local inference** — Ollama runs llama3.2 + nomic-embed-text with no external API calls
+- **Local inference** — Ollama runs llama3.2 + nomic-embed-text, no external API calls
+- **Clean Architecture** — Core, Infrastructure, Api separation with dependency injection
+- **Source attribution** — every answer includes document title and similarity score
+- **Similarity scoring** — cosine similarity returned with every source chunk
 
 ---
 
@@ -142,5 +145,10 @@ Everything here is decisions I made and understood, not boilerplate I copied.
 - [ ] React frontend with source highlighting
 
 ---
+
+Note: Running on local CPU via Ollama. 
+Response time is 20-30 seconds locally. 
+Deploying with Hugging Face Inference API 
+reduces this to 2-3 seconds.
 
 *Built with .NET 8 · Semantic Kernel · PostgreSQL · pgvector · RabbitMQ · Ollama*
