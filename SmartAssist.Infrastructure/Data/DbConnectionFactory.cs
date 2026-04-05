@@ -11,6 +11,7 @@ public interface IDbConnectionFactory
 public class DbConnectionFactory : IDbConnectionFactory
 {
     private readonly string _connectionString;
+    public string ConnectionString => _connectionString;
 
     public DbConnectionFactory(string connectionString)
     {

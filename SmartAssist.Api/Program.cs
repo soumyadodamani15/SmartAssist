@@ -27,6 +27,8 @@ builder.Services.AddScoped<IIngestionJobRepository, IngestionJobRepository>();
 builder.Services.AddScoped<IEmbeddingService, EmbeddingService>();
 builder.Services.AddScoped<DocumentIngestionService>();
 builder.Services.AddSingleton<DocumentChunker>();
+builder.Services.AddHttpClient<RagQueryService>();
+builder.Services.AddScoped<RagQueryService>();
 
 builder.Services.AddSingleton(new IngestionMessageProducer(
     rabbitHost, rabbitUser, rabbitPass));

@@ -9,6 +9,8 @@ public class DocumentChunk
     public float[]? Embedding { get; set; }
     public int TokenCount { get; set; }
     public DateTime CreatedAt { get; set; }
+    public string DocumentTitle { get; set; } = string.Empty;
+    public double SimilarityScore { get; set; }
 
     // Navigation — back to parent document
     public Document? Document { get; set; }
