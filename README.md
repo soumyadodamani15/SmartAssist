@@ -119,12 +119,17 @@ dotnet run
 
 ## Project Journal
 
-I'm building this in public, one phase at a time. Each phase has a corresponding LinkedIn post explaining the decisions made, problems hit, and concepts learned.
+Building this in public and documenting every technical decision.
 
-| Date | Phase | Post |
-|---|---|---|
-| — | Phase 1: Docker + pgvector setup | _coming soon_ |
-| — | Phase 2: .NET project structure + EF Core | _coming soon_ |
+| Post | Topic |
+|---|---|
+| Launch post | SmartAssist — what I built and why |
+| Concept 1 | What is RAG and why it prevents hallucinations |
+| Concept 2 | Dapper over EF Core for vector search |
+| Concept 3 | pgvector — vector search inside PostgreSQL |
+| Concept 4 | RabbitMQ async processing |
+| Concept 5 | Document chunking and overlap |
+| Concept 6 | Clean Architecture in .NET |
 
 ---
 

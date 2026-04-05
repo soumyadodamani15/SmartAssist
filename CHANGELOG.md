@@ -48,7 +48,7 @@ Each entry maps to a phase of the build.
 ## [Phase 2] — .NET 9 Project + Data Access Layer — ✅ Complete
 **Date:** 27 March 2026
 
-### What we built
+### What I built
 - .NET 9 solution with three projects: Api, Core, Infrastructure
 - Clean Architecture — Core has zero dependencies, everything depends on Core
 - Entities: Document, DocumentChunk, IngestionJob
@@ -78,7 +78,7 @@ Each entry maps to a phase of the build.
 ## [Phase 3] — Document Ingestion Pipeline — ✅ Complete
 **Date:** 28 March 2026
 
-### What we built
+### What I built
 - DocumentChunker — sliding window with configurable size (500) and overlap (50)
 - DocumentIngestionService — orchestrates chunk → embed → store pipeline
 - POST /api/Documents endpoint returning 202 Accepted
@@ -95,7 +95,7 @@ Each entry maps to a phase of the build.
 ## [Phase 4] — RabbitMQ Async Processing — ✅ Complete
 **Date:** 29 March 2026
 
-### What we built
+### What I built
 - IngestionMessage model in Core/Models
 - IngestionMessageProducer — publishes messages to RabbitMQ
 - IngestionWorker — IHostedService background worker
@@ -113,7 +113,7 @@ Each entry maps to a phase of the build.
 ## [Phase 5] — RAG Query Pipeline — ✅ Complete
 **Date:** 31 March 2026
 
-### What we built
+### What I built
 - RagQueryService — full RAG pipeline in one service
 - POST /api/Query endpoint
 - Vector similarity search using pgvector HNSW index
